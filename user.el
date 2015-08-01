@@ -71,3 +71,7 @@
 ;; Undo Tree
 
 (package-require 'undo-tree)
+
+;; Company
+
+(setq company-idle-delay nil)
