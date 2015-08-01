@@ -61,3 +61,9 @@
 ;; Use C-n/C-p to navigate vertical ido
 
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+
+;; Rubby
+
+(package-require 'enh-ruby-mode)
+(setq ruby-deep-indent-paren nil)
+(setq ruby-align-chained-calls t)
