@@ -13,8 +13,19 @@
    (clj-refactor-mode 1)))
 
 (add-hook
- 'cider-mode-hook
+ 'cider-repl-mode-hook
  #'eldoc-mode)
+
+(add-hook
+ 'cider-repl-mode-hook
+ #'paredit-mode)
+
+;; Grab PATH from the containing shell
+
+(package-require 'exec-path-from-shell)
+
+(when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize))
 
 ;; Open recent files in style. (C-x f)
 
