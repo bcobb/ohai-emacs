@@ -57,3 +57,7 @@
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
+
+;; Use C-n/C-p to navigate vertical ido
+
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
