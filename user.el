@@ -75,3 +75,7 @@
 ;; Company
 
 (setq company-idle-delay nil)
+
+;; YAML
+
+(package-require 'yaml-mode)
