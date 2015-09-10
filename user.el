@@ -84,3 +84,7 @@
 ;; See: https://github.com/technomancy/emacs-starter-kit/issues/39
 
 (set ffap-machine-p-known 'reject)
+
+;; Projectile
+
+(setq projectile-switch-project-action 'projectile-dired)
