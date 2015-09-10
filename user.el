@@ -78,3 +78,9 @@
 ;; YAML
 
 (package-require 'yaml-mode)
+
+
+;; Don't let C-x f ping a URL-like word
+;; See: https://github.com/technomancy/emacs-starter-kit/issues/39
+
+(set ffap-machine-p-known 'reject)
