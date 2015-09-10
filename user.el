@@ -65,7 +65,6 @@
 ;; Rubby
 
 (package-require 'enh-ruby-mode)
-(setq ruby-deep-indent-paren nil)
 (setq ruby-align-chained-calls t)
 
 ;; Undo Tree
