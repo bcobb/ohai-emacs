@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(comment-multi-line t)
+ '(css-indent-offset 2)
  '(ohai-personal-taste/paredit t)
  '(ohai-personal-taste/run-wizard nil)
  '(ohai-personal-taste/splash (quote daily-otter))

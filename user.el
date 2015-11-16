@@ -67,6 +67,11 @@
 (package-require 'enh-ruby-mode)
 (setq ruby-align-chained-calls t)
 
+(package-require 'yard-mode)
+
+(add-hook 'ruby-mode-hook 'yard-mode)
+(add-hook 'ruby-mode-hook 'eldoc-mode)
+
 ;; Undo Tree
 
 (package-require 'undo-tree)
@@ -79,7 +84,6 @@
 
 (package-require 'yaml-mode)
 
-
 ;; Don't let C-x f ping a URL-like word
 ;; See: https://github.com/technomancy/emacs-starter-kit/issues/39
 
@@ -88,3 +92,8 @@
 ;; Projectile
 
 (setq projectile-switch-project-action 'projectile-dired)
+
+;; This little light of mine
+(package-require 'beacon)
+
+(beacon-mode 1)
