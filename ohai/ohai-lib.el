@@ -26,12 +26,9 @@
 ;; f.el    - files and paths  https://github.com/rejeep/f.el
 ;; s.el    - strings          https://github.com/magnars/s.el
 ;; dash.el - lists            https://github.com/magnars/dash.el
-(package-require 'f)
-(require 'f)
-(package-require 's)
-(require 's)
-(package-require 'dash)
-(require 'dash)
+(use-package f)
+(use-package s)
+(use-package dash)
 
 
 
@@ -48,6 +45,13 @@ the symbol `sym' when rendering."
 (defun ohai/exec (command)
   "Run a shell command and return its output as a string, whitespace trimmed."
   (s-trim (shell-command-to-string command)))
+
+(defun ohai/exec-with-rc (command &rest args)
+  "Run a shell command and return a list containing two values: its return
+code and its whitespace trimmed output."
+  (with-temp-buffer
+    (list (apply 'call-process command nil (current-buffer) nil args)
+          (s-trim (buffer-string)))))
 
 (defun ohai/is-exec (command)
   "Returns true if `command' is an executable on the system search path."

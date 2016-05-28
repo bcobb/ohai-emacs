@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-git.el --- Things for working with Git.
+;;; ohai-set-path.el --- Set the executable search path from the user shell.
 
-;; Copyright (C) 2015 Bodil Stokke
+;; Copyright (C) 2016 Bodil Stokke
 
 ;; Author: Bodil Stokke <bodil@bodil.org>
 
@@ -20,24 +20,14 @@
 
 ;;; Code:
 
-(require 'ohai-package)
+;; To ensure availability of command line tools, we try to get Emacs's
+;; executable path from your shell configuration using the
+;; `exec-path-from-shell' package.
 
-;; Invoke Magit by typing C-x g, and you can thank me later.
-;; See http://magit.github.io/ for instructions.
-(use-package magit
-  :commands magit-status
-  :bind ("C-x g" . magit-status))
+(paradox-require 'exec-path-from-shell)
 
-;; Use M-x gist-buffer or M-x gist-region to create a gist
-;; directly from the current buffer or selection.
-(use-package gist)
+(when (memq window-system '(x mac ns))
+  (exec-path-from-shell-initialize))
 
-;; Mark uncommitted changes in the fringe.
-(use-package git-gutter-fringe
-  :config
-  (global-git-gutter-mode t)
-  :diminish git-gutter-mode)
-
-
-
-(provide 'ohai-git)
+(provide 'ohai-set-path)
+;;; ohai-set-path.el ends here

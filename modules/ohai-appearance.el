@@ -62,12 +62,19 @@
 ;; Configure the dark colour scheme.
 (defun ohai-appearance/dark ()
   (interactive)
-  (load-theme 'wombat)
+  (use-package material-theme)
+  (load-theme 'material)
 
-  (set-face-background 'region "#374186")
-  (set-face-background 'fringe "#191919")
-  (set-face-attribute 'linum nil :background nil :height 0.7)
-  (set-face-attribute 'linum-highlight-face nil :foreground "white" :background "#363636" :height 0.7)
+  (set-face-background 'default "#000")
+
+  (set-face-background 'region "#223355")
+  (set-face-background 'fringe "#000")
+  (set-face-attribute
+   'linum nil
+   :foreground "#678" :background "#000" :height 0.9)
+  (set-face-attribute
+   'linum-highlight-face nil
+   :foreground "#96989c" :background "#263238" :height 0.9)
   (set-face-foreground 'which-func "#7f9f7f")
 
   (set-face-foreground 'term-color-black "#3f3f3f")
@@ -114,8 +121,9 @@
 (setq linum-format (if (not window-system) "%4d " "%4d"))
 
 ;; Highlight the line number of the current line.
-(package-require 'hlinum)
-(hlinum-activate)
+(use-package hlinum
+  :config
+  (hlinum-activate))
 
 ;; Show column numbers in modeline.
 (setq column-number-mode t)
@@ -136,33 +144,27 @@
 (show-paren-mode 1)
 
 ;; Engage Nyan Cat!
-(package-require 'nyan-mode)
-(nyan-mode 1)
-(setq nyan-bar-length 16
-      nyan-wavy-trail t)
+(use-package nyan-mode
+  :config
+  (nyan-mode 1)
+  (setq nyan-bar-length 16
+        nyan-wavy-trail t))
 
 ;; Unclutter the modeline
-(package-require 'diminish)
-(eval-after-load "yasnippet" '(diminish 'yas-minor-mode))
-(eval-after-load "ethan-wspace" '(diminish 'ethan-wspace-mode))
+(use-package diminish)
+
+
 (eval-after-load "eldoc" '(diminish 'eldoc-mode))
-(eval-after-load "rainbow-mode" '(diminish 'rainbow-mode))
-(eval-after-load "paredit" '(diminish 'paredit-mode))
 (eval-after-load "autopair" '(diminish 'autopair-mode))
 (eval-after-load "abbrev" '(diminish 'abbrev-mode))
-(eval-after-load "company" '(diminish 'company-mode))
 (eval-after-load "js2-highlight-vars" '(diminish 'js2-highlight-vars-mode))
-(eval-after-load "projectile" '(diminish 'projectile-mode))
 (eval-after-load "mmm-mode" '(diminish 'mmm-mode))
 (eval-after-load "skewer-html" '(diminish 'skewer-html-mode))
 (eval-after-load "skewer-mode" '(diminish 'skewer-mode))
 (eval-after-load "auto-indent-mode" '(diminish 'auto-indent-minor-mode))
-(eval-after-load "highlight-parentheses" '(diminish 'highlight-parentheses-mode))
 ;; (eval-after-load "subword" '(diminish 'subword-mode))
-(eval-after-load "anzu" '(diminish 'anzu-mode))
 (eval-after-load "cider" '(diminish 'cider-mode))
 (eval-after-load "smartparens" '(diminish 'smartparens-mode))
-(eval-after-load "git-gutter" '(diminish 'git-gutter-mode))
 
 (eval-after-load "js2-mode"
   '(defadvice js2-mode (after js2-rename-modeline activate)
@@ -182,9 +184,13 @@
 (defadvice emacs-lisp-mode (after elisp-rename-modeline activate)
   (setq mode-name "ELisp"))
 
-;; Display incremental search stats in modeline.
-(package-require 'anzu)
-(global-anzu-mode 1)
+;; Handle ANSI colours in compile buffer output.
+;; From https://gist.github.com/jwiegley/8ae7145ba5ce64250a05
+(defun compilation-ansi-color-process-output ()
+  (ansi-color-process-output nil)
+  (set (make-local-variable 'comint-last-output-start)
+       (point-marker)))
+(add-hook 'compilation-filter-hook #'compilation-ansi-color-process-output)
 
 ;; Install the colour scheme according to personal taste.
 (defun ohai-appearance/apply-style ()

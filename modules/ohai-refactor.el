@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-git.el --- Things for working with Git.
+;;; ohai-refactor.el --- The EMR generic refactoring package.
 
 ;; Copyright (C) 2015 Bodil Stokke
 
@@ -20,24 +20,11 @@
 
 ;;; Code:
 
-(require 'ohai-package)
-
-;; Invoke Magit by typing C-x g, and you can thank me later.
-;; See http://magit.github.io/ for instructions.
-(use-package magit
-  :commands magit-status
-  :bind ("C-x g" . magit-status))
-
-;; Use M-x gist-buffer or M-x gist-region to create a gist
-;; directly from the current buffer or selection.
-(use-package gist)
-
-;; Mark uncommitted changes in the fringe.
-(use-package git-gutter-fringe
+(use-package emr
   :config
-  (global-git-gutter-mode t)
-  :diminish git-gutter-mode)
+  (add-hook 'prog-mode-hook 'emr-initialize)
+  ;; Just hit M-RET to access your refactoring tools in any supported mode.
+  (define-key prog-mode-map (kbd "M-RET") 'emr-show-refactor-menu))
 
-
-
-(provide 'ohai-git)
+(provide 'ohai-refactor)
+;;; ohai-refactor.el ends here

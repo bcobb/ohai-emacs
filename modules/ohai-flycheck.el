@@ -22,28 +22,34 @@
 
 (require 'ohai-package)
 
-;; Install Flycheck.
-(package-require 'flycheck)
-
-;; Start it automatically for all modes except ELisp mode,
-;; where the linter is just designed to make you mad.
-(add-hook 'find-file-hook
-          (lambda ()
-            (when (not (equal 'emacs-lisp-mode major-mode))
-              (flycheck-mode))))
-
-;; Jump between current errors with M-n and M-p.
+;; Bind M-n and M-p to navigate to the next/previous errors.
 (global-set-key (kbd "M-n") 'next-error)
 (global-set-key (kbd "M-p") 'previous-error)
 
+;; Install Flycheck.
+(use-package flycheck
+  :config
+  ;; Start it automatically for all modes except ELisp mode,
+  ;; where the linter is just designed to make you mad.
+  (add-hook 'find-file-hook
+            (lambda ()
+              (when (not (equal 'emacs-lisp-mode major-mode))
+                (flycheck-mode))))
+  (require 'flycheck-tip)
+  (add-hook 'flycheck-mode-hook (lambda ()
+                                  (flycheck-tip-use-timer 'verbose))))
+
+;; Display errors as tooltips using flycheck-tip.
+(use-package flycheck-tip)
+
 ;; Turn the modeline red when Flycheck has errors.
-(package-require 'flycheck-color-mode-line)
+(use-package flycheck-color-mode-line
+  :config
+  (with-eval-after-load "flycheck"
+    (setq flycheck-highlighting-mode 'symbols)
+    (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)))
 
 ;; Configure the theme.
-(with-eval-after-load "flycheck"
-  (setq flycheck-highlighting-mode 'symbols)
-  (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode))
-
 (add-hook
  'ohai-appearance/dark-hook
  (lambda ()

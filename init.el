@@ -35,6 +35,9 @@ Your installed Emacs reports:
 ;; We start off by telling Emacs where we intend to keep things, and some
 ;; other basic system setup.
 
+;; Initialise the package system first of all.
+(package-initialize)
+
 ;; Skip the default splash screen.
 (setq inhibit-startup-message t)
 
@@ -70,6 +73,7 @@ Your installed Emacs reports:
 (require 'ohai-update)
 (require 'ohai-personal-taste)
 (require 'ohai-startup-wizard)
+(require 'ohai-set-path)
 
 ;; Load the enabled modules.
 (when (not (boundp 'ohai/wizard-did-run)) (ohai/load-modules))

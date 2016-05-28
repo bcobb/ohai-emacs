@@ -15,3 +15,8 @@
 /session.*
 /network-security.data
 .ido.last
+projectile.cache
+/TAGS
+/games
+/emojis
+/abbrev_defs

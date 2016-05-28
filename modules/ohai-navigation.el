@@ -25,11 +25,13 @@
 
 ;; Avy is a quick way to jump around your buffers.
 ;; https://github.com/abo-abo/avy
-(package-require 'avy)
-(global-set-key (kbd "C-;") 'avy-goto-word-1)
-(global-set-key (kbd "C-:") 'avy-goto-char)
-(with-eval-after-load "isearch"
-  (define-key isearch-mode-map (kbd "C-;") 'avy-isearch))
+(use-package avy
+  :demand t
+  :bind (("C-;" . avy-goto-word-1)
+         ("C-:" . avy-goto-char))
+  :config
+  (with-eval-after-load "isearch"
+    (define-key isearch-mode-map (kbd "C-;") 'avy-isearch)))
 
 ;; Smart home key.
 (defun smart-beginning-of-line ()
@@ -45,13 +47,12 @@
 ;; Consider CamelCase chunks as words when navigating.
 (global-subword-mode 1)
 
-;; Swap buffers in open windows with C-x C-o.
-(package-require 'swap-buffers)
-(global-set-key (kbd "C-x C-o") 'swap-buffers)
-
 ;; Enhance C-x o when more than two windows are open.
-(package-require 'ace-window)
-(global-set-key (kbd "C-x o") 'ace-window)
+(use-package ace-window
+  :bind (("C-x o" . ace-window)
+         ("C-x C-o" . ace-swap-window))
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 ;; Use C-x M-p to kill the buffer in the other window, revealing
 ;; the next buffer in the stack.
@@ -63,8 +64,16 @@
      (quit-window))))
 
 ;; Display incremental search stats in the modeline.
-(package-require 'anzu)
-(global-anzu-mode 1)
+(use-package anzu
+  :demand t
+  :config
+  (global-anzu-mode 1)
+  ;; Anzu provides a version of `query-replace' and friends which give visual
+  ;; feedback when composing regexps. Let's replace the regular versions.
+  :bind(("C-%" . anzu-query-replace-at-cursor)
+        ("M-%" . anzu-query-replace)
+        ("C-M-%" . anzu-query-replace-regexp))
+  :diminish anzu-mode)
 
 
 

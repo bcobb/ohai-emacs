@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-swiper.el --- Improved incremental search.
+;;; ohai-unicode.el --- Proper Unicode setup, because you need emoji.
 
 ;; Copyright (C) 2015 Bodil Stokke
 
@@ -20,9 +20,18 @@
 
 ;;; Code:
 
-(package-require 'swiper)
+;; We use the `unicode-fonts' package to set everything up. Beware that the
+;; `unicode-fonts-setup' function takes a while to run, which is why this
+;; module isn't on by default.
 
-(global-set-key (kbd "C-s") 'swiper)
+;; You'll need to make sure the necessary fonts are installed for this to
+;; work. See https://github.com/rolandwalker/unicode-fonts/#quickstart
 
-(provide 'ohai-swiper)
-;;; ohai-swiper.el ends here
+(use-package unicode-fonts
+  :config
+  (unicode-fonts-setup))
+
+
+
+(provide 'ohai-unicode)
+;;; ohai-unicode.el ends here

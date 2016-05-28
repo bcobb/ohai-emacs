@@ -26,26 +26,31 @@
 ;; If you're ready for Paredit, let's do Paredit!
 ;; Learn Paredit: http://pub.gajendra.net/src/paredit-refcard.pdf
 (when ohai-personal-taste/paredit
-  (package-require 'paredit)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
-
-;; Setup C-c v to eval whole buffer in all lisps.
-(define-key lisp-mode-shared-map (kbd "C-c v") 'eval-buffer)
+  (use-package paredit
+    :commands paredit-mode
+    :config
+    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+    ;; Setup C-c v to eval whole buffer in all lisps.
+    (define-key lisp-mode-shared-map (kbd "C-c v") 'eval-buffer)
+    :diminish paredit-mode))
 
 ;; Highlight the sexp under the cursor.
-(package-require 'highlight-parentheses)
-(add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+(use-package highlight-parentheses
+  :commands highlight-parentheses-mode
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+  :diminish highlight-parentheses-mode)
 
 ;; When saving an elisp file, remove its compiled version if
 ;; there is one, as you'll want to recompile it.
-(defun remove-elc-on-save ()
+(defun ohai-elisp/remove-elc-on-save ()
   "If you're saving an elisp file, likely the .elc is no longer valid."
   (make-local-variable 'after-save-hook)
   (add-hook 'after-save-hook
             (lambda ()
               (if (file-exists-p (concat buffer-file-name "c"))
                   (delete-file (concat buffer-file-name "c"))))))
-(add-hook 'emacs-lisp-mode-hook 'remove-elc-on-save)
+(add-hook 'emacs-lisp-mode-hook 'ohai-elisp/remove-elc-on-save)
 
 ;; Enable eldoc mode, which provides context based documentation
 ;; in the minibuffer.

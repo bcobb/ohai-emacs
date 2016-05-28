@@ -1,5 +1,5 @@
 ;;; -*- lexical-binding: t -*-
-;;; ohai-git.el --- Things for working with Git.
+;;; ohai-emoji.el --- Support graphical emoji when font support is missing.
 
 ;; Copyright (C) 2015 Bodil Stokke
 
@@ -20,24 +20,19 @@
 
 ;;; Code:
 
-(require 'ohai-package)
-
-;; Invoke Magit by typing C-x g, and you can thank me later.
-;; See http://magit.github.io/ for instructions.
-(use-package magit
-  :commands magit-status
-  :bind ("C-x g" . magit-status))
-
-;; Use M-x gist-buffer or M-x gist-region to create a gist
-;; directly from the current buffer or selection.
-(use-package gist)
-
-;; Mark uncommitted changes in the fringe.
-(use-package git-gutter-fringe
+(use-package emojify
   :config
-  (global-git-gutter-mode t)
-  :diminish git-gutter-mode)
+  ;; Set emojify to only replace Unicode emoji, and do it everywhere.
+  (setq emojify-emoji-styles '(unicode)
+        emojify-inhibit-major-modes '())
+  ;; Enable it globally.
+  (add-hook 'after-init-hook #'global-emojify-mode))
+
+;; Patch emojify to replace emoji everywhere in programming modes.
+(defun emojify-valid-prog-context-p (beg end) 't)
 
 
 
-(provide 'ohai-git)
+
+(provide 'ohai-emoji)
+;;; ohai-emoji.el ends here
