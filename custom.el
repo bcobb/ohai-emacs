@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(comment-multi-line t)
  '(css-indent-offset 2)
+ '(ido-vertical-define-keys (quote C-n-and-C-p-only))
  '(ohai-personal-taste/paredit t)
  '(ohai-personal-taste/run-wizard nil)
  '(ohai-personal-taste/splash (quote daily-otter))
