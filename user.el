@@ -97,3 +97,14 @@
 (package-require 'beacon)
 
 (beacon-mode 1)
+
+;; Markdown
+
+(package-require 'markdown-mode)
+
+(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("README\\.md$" . gfm-mode))
+(add-to-list 'auto-mode-alist '("README\\.markdown$" . gfm-mode))
+
+(setq alchemist-mix-command "/usr/local/bin/mix")
