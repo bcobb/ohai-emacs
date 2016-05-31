@@ -1,10 +1,10 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
-(package-require 'ag)
+(use-package ag)
 
-(package-require 'clj-refactor)
-(package-require 'paredit)
-(package-require 'cider)
+(use-package clj-refactor)
+(use-package paredit)
+(use-package cider)
 
 (add-hook
  'clojure-mode-hook
@@ -22,7 +22,7 @@
 
 ;; Grab PATH from the containing shell
 
-(package-require 'exec-path-from-shell)
+(use-package exec-path-from-shell)
 
 (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize))
@@ -64,17 +64,17 @@
 
 ;; Rubby
 
-(package-require 'enh-ruby-mode)
+(use-package enh-ruby-mode)
 (setq ruby-align-chained-calls t)
 
-(package-require 'yard-mode)
+(use-package yard-mode)
 
 (add-hook 'ruby-mode-hook 'yard-mode)
 (add-hook 'ruby-mode-hook 'eldoc-mode)
 
 ;; Undo Tree
 
-(package-require 'undo-tree)
+(use-package undo-tree)
 
 ;; Company
 
@@ -82,7 +82,7 @@
 
 ;; YAML
 
-(package-require 'yaml-mode)
+(use-package yaml-mode)
 
 ;; Don't let C-x f ping a URL-like word
 ;; See: https://github.com/technomancy/emacs-starter-kit/issues/39
@@ -94,13 +94,13 @@
 (setq projectile-switch-project-action 'projectile-dired)
 
 ;; This little light of mine
-(package-require 'beacon)
+(use-package beacon)
 
 (beacon-mode 1)
 
 ;; Markdown
 
-(package-require 'markdown-mode)
+(use-package markdown-mode)
 
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))

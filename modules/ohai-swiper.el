@@ -20,7 +20,7 @@
 
 ;;; Code:
 
-(package-require 'swiper)
+(use-package swiper)
 
 (global-set-key (kbd "C-s") 'swiper)
 
