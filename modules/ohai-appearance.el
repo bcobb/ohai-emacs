@@ -33,7 +33,7 @@
 ;; Configure the light colour scheme.
 (defun ohai-appearance/light ()
   (interactive)
-  (load-theme 'leuven)
+  (load-theme 'leuven t)
 
   (set-face-attribute 'mode-line nil
                       :foreground "#cccccc"
@@ -63,7 +63,7 @@
 (defun ohai-appearance/dark ()
   (interactive)
   (use-package material-theme)
-  (load-theme 'material)
+  (load-theme 'material t)
 
   (set-face-background 'default "#000")
 
