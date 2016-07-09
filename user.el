@@ -10,11 +10,12 @@
  'clojure-mode-hook
  (lambda ()
    (paredit-mode)
+   (eldoc-mode)
    (clj-refactor-mode 1)))
 
 (add-hook
  'cider-repl-mode-hook
- #'eldoc-mode)
+ 'eldoc-mode)
 
 (add-hook
  'cider-repl-mode-hook
