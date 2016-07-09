@@ -34,7 +34,7 @@
 (defun ohai-appearance/light ()
   (interactive)
   (use-package material-theme)
-  (load-theme 'material-light)
+  (load-theme 'material-light t)
 
   (set-face-attribute 'mode-line nil
                       :foreground "#cccccc"
