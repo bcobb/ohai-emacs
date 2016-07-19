@@ -73,6 +73,17 @@
 (add-hook 'ruby-mode-hook 'yard-mode)
 (add-hook 'ruby-mode-hook 'eldoc-mode)
 
+(use-package chruby)
+
+(defun bcobb-ruby-version (path)
+  (car (with-temp-buffer
+         (insert-file-contents path)
+         (split-string (buffer-string) "\n" t))))
+
+(defun bcobb-chruby ()
+  (let* ((file-path (concat (projectile-project-root) ".ruby-version")))
+    (chruby (bcobb-ruby-version file-path))))
+
 ;; Undo Tree
 
 (use-package undo-tree)
