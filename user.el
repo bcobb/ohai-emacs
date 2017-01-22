@@ -80,9 +80,32 @@
          (insert-file-contents path)
          (split-string (buffer-string) "\n" t))))
 
+(defun bcobb-projectile-chruby ()
+  (let ((file-path (concat (projectile-project-root) ".ruby-version")))
+    (if (file-exists-p file-path)
+        (chruby (bcobb-ruby-version file-path))
+      "no .ruby-version in the project root")))
+
+(defun bcobb-projectile-bundler-p ()
+  (when (projectile-project-p)
+    (let ((file-path (concat (projectile-project-root) "Gemfile.lock")))
+      (file-exists-p file-path))))
+
+(defun bcobb-flycheck-rubocop-wrapper (command)
+  (if (bcobb-projectile-bundler-p)
+      (append '("bundle" "exec") command)
+    command))
+
+(defun bcobb-cwd-chruby ()
+  (let ((file-path (".ruby-version")))
+    (if (file-exists-p file-path)
+        (chruby (bcobb-ruby-version file-path))
+      "no .ruby-version in the current directory"))  )
+
 (defun bcobb-chruby ()
-  (let* ((file-path (concat (projectile-project-root) ".ruby-version")))
-    (chruby (bcobb-ruby-version file-path))))
+  (if (projectile-project-p)
+      (bcobb-projectile-chruby)
+    (bcobb-chruby-cwd)))
 
 ;; Undo Tree
 
@@ -105,6 +128,8 @@
 
 (setq projectile-switch-project-action 'projectile-dired)
 
+(add-hook 'projectile-after-switch-project-hook 'bcobb-projectile-chruby)
+
 ;; This little light of mine
 (use-package beacon)
 
@@ -120,3 +145,6 @@
 (add-to-list 'auto-mode-alist '("README\\.markdown$" . gfm-mode))
 
 (setq alchemist-mix-command "/usr/local/bin/mix")
+;; Flycheck
+
+(setq flycheck-command-wrapper-function 'bcobb-flycheck-rubocop-wrapper)
