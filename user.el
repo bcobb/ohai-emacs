@@ -139,7 +139,8 @@
 (add-to-list 'auto-mode-alist '("README\\.md$" . gfm-mode))
 (add-to-list 'auto-mode-alist '("README\\.markdown$" . gfm-mode))
 
-(setq alchemist-mix-command "/usr/local/bin/mix")
+(setq markdown-open-command "marked")
+
 ;; Flycheck
 
 (setq flycheck-command-wrapper-function 'bcobb-flycheck-rubocop-wrapper)
