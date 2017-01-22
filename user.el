@@ -159,3 +159,5 @@
             (nxml-backward-up-element)
             (setq q (concat (xmltok-start-tag-qname) "/" q))))
       (error (message q)))))
+
+(use-package evil)
