@@ -144,3 +144,18 @@
 ;; Flycheck
 
 (setq flycheck-command-wrapper-function 'bcobb-flycheck-rubocop-wrapper)
+
+;; Misc
+
+(defun show-xml-path (arg)
+  "Shows the names of all elements enclosing point, in the echo area."
+  (interactive "*P")
+  (let ((q ""))
+    (nxml-ensure-scan-up-to-date)
+    (setq q "")
+    (condition-case ()
+        (save-excursion
+          (while t
+            (nxml-backward-up-element)
+            (setq q (concat (xmltok-start-tag-qname) "/" q))))
+      (error (message q)))))
