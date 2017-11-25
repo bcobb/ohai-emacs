@@ -167,3 +167,7 @@
       (error (message q)))))
 
 (use-package evil)
+
+(add-to-list 'load-path (concat dotfiles-dir "lib"))
+
+(require 'logbook)
