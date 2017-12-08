@@ -26,6 +26,11 @@
      name
      extension)))
 
+(defun logbook-header ()
+  (interactive)
+  (let ((content (format-time-string "%A, %B %-d, %Y")))
+    (insert (concat "# " content))))
+
 (defun logbook-entries ()
   (interactive)
   (dired (logbook--directory)))
