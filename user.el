@@ -1,4 +1,6 @@
 (use-package ag)
+(use-package undo-tree
+  :config (global-undo-tree-mode))
 
 (add-to-list 'load-path (concat dotfiles-dir "bcobb"))
 (add-to-list 'load-path (concat dotfiles-dir "lib"))
