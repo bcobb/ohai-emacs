@@ -50,11 +50,4 @@
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (setq flycheck-javascript-eslint-executable (or (ohai/resolve-exec "eslint") "eslint"))))
 
-;; Set up LSP support if the LSP module is loaded.
-(with-eval-after-load "ohai-lsp"
-  (use-package lsp-javascript-typescript
-    :hook (web-mode . lsp-javascript-typescript-enable)))
-
-
-
 (provide 'ohai-js-web-mode)
