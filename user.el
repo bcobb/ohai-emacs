@@ -9,5 +9,6 @@
 (require 'bcobb-ohai-tweaks)
 (require 'bcobb-javascript)
 (require 'bcobb-swiper)
+(require 'bcobb-logbook)
 
 (add-to-list 'default-frame-alist '(font . "Hack-16"))
