@@ -68,7 +68,9 @@
 
 (defun ohai/load-modules ()
   (interactive)
-  (dolist (module ohai/modules) (require module nil t))
+  (dolist (module ohai/modules)
+    (message "Loading %s" module)
+    (require module nil t))
   (run-hooks 'ohai/modules-loaded-hook))
 
 (provide 'ohai-module-index)
