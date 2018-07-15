@@ -12,5 +12,6 @@
 (require 'bcobb-javascript)
 (require 'bcobb-swiper)
 (require 'bcobb-logbook)
+(require 'bcobb-yaml)
 
 (add-to-list 'default-frame-alist '(font . "Hack-16"))

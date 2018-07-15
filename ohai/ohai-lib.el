@@ -55,7 +55,9 @@ code and its whitespace trimmed output."
 
 (defun ohai/is-exec (command)
   "Returns true if `command' is an executable on the system search path."
-  (f-executable? (s-trim (shell-command-to-string (s-concat "which " command)))))
+  (-let [path (s-trim (shell-command-to-string (s-concat "which " command)))]
+    (when (> (length path) 0)
+      (f-executable? path))))
 
 (defun ohai/resolve-exec (command)
   "If `command' is an executable on the system search path, return its absolute path.
