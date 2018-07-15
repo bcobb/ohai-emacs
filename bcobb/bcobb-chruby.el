@@ -18,6 +18,7 @@
       "no .ruby-version in the current directory"))  )
 
 (defun bcobb-chruby ()
+  (interactive)
   (if (projectile-project-p)
       (bcobb-projectile-chruby)
     (bcobb-chruby-cwd)))
