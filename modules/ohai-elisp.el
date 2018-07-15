@@ -27,7 +27,6 @@
 ;; Learn Paredit: http://pub.gajendra.net/src/paredit-refcard.pdf
 (when ohai-personal-taste/paredit
   (use-package paredit
-    :commands paredit-mode
     :config
     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
     ;; Setup C-c v to eval whole buffer in all lisps.
@@ -59,7 +58,6 @@
 ;; eros-mode will show you the result of evaluating an elisp command
 ;; as an overlay in your elisp buffer. Try it out with C-x C-e now!
 (use-package eros
-  :commands eros-mode
   :config
   (add-hook 'emacs-lisp-mode-hook 'eros-mode))
 
