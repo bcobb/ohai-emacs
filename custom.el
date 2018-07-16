@@ -29,6 +29,7 @@
  '(projectile-switch-project-action (quote projectile-dired))
  '(ring-bell-function (quote ignore))
  '(rspec-autosave-buffer t)
+ '(ruby-align-chained-calls t)
  '(safe-local-variable-values (quote ((projectile-project-name . "logbook"))))
  '(visible-bell nil))
 (custom-set-faces
