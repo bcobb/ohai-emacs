@@ -21,7 +21,7 @@
   (interactive)
   (if (projectile-project-p)
       (bcobb-projectile-chruby)
-    (bcobb-chruby-cwd)))
+    (bcobb-cwd-chruby)))
 
 (add-hook 'projectile-after-switch-project-hook 'bcobb-projectile-chruby)
 
