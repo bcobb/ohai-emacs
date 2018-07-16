@@ -5,13 +5,17 @@
 (add-to-list 'load-path (concat dotfiles-dir "bcobb"))
 (add-to-list 'load-path (concat dotfiles-dir "lib"))
 
+(require 'bcobb-lib)
+
 (require 'bcobb-chruby)
 (require 'bcobb-copypasta)
-(require 'bcobb-rubocop)
-(require 'bcobb-ohai-tweaks)
 (require 'bcobb-javascript)
-(require 'bcobb-swiper)
+(require 'bcobb-js-flow)
 (require 'bcobb-logbook)
+(require 'bcobb-ohai-tweaks)
+(require 'bcobb-rubocop)
+(require 'bcobb-ruby)
+(require 'bcobb-swiper)
 (require 'bcobb-yaml)
 
 (add-to-list 'default-frame-alist '(font . "Hack-16"))
