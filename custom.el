@@ -30,6 +30,7 @@
  '(ring-bell-function (quote ignore))
  '(rspec-autosave-buffer t)
  '(ruby-align-chained-calls t)
+ '(ruby-insert-encoding-magic-comment nil)
  '(safe-local-variable-values (quote ((projectile-project-name . "logbook"))))
  '(visible-bell nil))
 (custom-set-faces
