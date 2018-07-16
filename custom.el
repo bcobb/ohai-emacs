@@ -9,7 +9,7 @@
     ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" default)))
  '(dired-use-ls-dired nil)
  '(ffap-machine-p-known (quote reject))
- '(flycheck-disabled-checkers (quote (chef-foodcritic)))
+ '(flycheck-disabled-checkers (quote (scss chef-foodcritic)))
  '(ido-vertical-define-keys (quote C-n-and-C-p-only))
  '(logbook-directory "~/Library/Mobile Documents/com~apple~CloudDocs/logbook")
  '(lsp-javascript-flow-server "flow")
