@@ -15,6 +15,7 @@
 (require 'bcobb-ohai-tweaks)
 (require 'bcobb-rubocop)
 (require 'bcobb-ruby)
+(require 'bcobb-scss)
 (require 'bcobb-swiper)
 (require 'bcobb-yaml)
 

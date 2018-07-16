@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(add-node-modules-path-debug t)
+ '(css-indent-offset 2)
  '(custom-safe-themes
    (quote
     ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" default)))
