@@ -31,6 +31,8 @@
  '(projectile-switch-project-action (quote projectile-dired))
  '(ring-bell-function (quote ignore))
  '(rspec-autosave-buffer t)
+ '(rspec-use-chruby t)
+ '(rspec-use-spring-when-possible nil)
  '(ruby-align-chained-calls t)
  '(ruby-insert-encoding-magic-comment nil)
  '(safe-local-variable-values (quote ((projectile-project-name . "logbook"))))
