@@ -79,8 +79,10 @@
              week
              ".markdown"))
     (when (not (logbook--has-week-header-p))
+      (goto-char (point-max))
       (insert (concat "# " (logbook--week-header-content))))
     (when (not (logbook--has-day-header-p))
+      (goto-char (point-max))
       (insert "\n\n")
       (insert (concat "## " (logbook--day-header-content)))
       (insert "\n\n"))
