@@ -48,7 +48,8 @@
 (defun logbook--effective-moment (&optional reference)
   (if (and (logbook--beginning-of-month-p reference)
            (logbook--week-includes-last-month-p reference))
-      (logbook--n-days-ago (logbook--day-of-month reference) reference)
+      (logbook--effective-moment
+       (logbook--n-days-ago (logbook--day-of-month reference) reference))
     (let ((now (or reference (current-time))))
       (logbook--n-days-ago (- (logbook--day-of-week now) 1) now))))
 
