@@ -192,9 +192,10 @@
 ;; Handle ANSI colours in compile buffer output.
 ;; From https://gist.github.com/jwiegley/8ae7145ba5ce64250a05
 (defun compilation-ansi-color-process-output ()
-  (ansi-color-process-output nil)
-  (set (make-local-variable 'comint-last-output-start)
-       (point-marker)))
+  (when (eq major-mode 'compilation-mode)
+    (ansi-color-process-output nil)
+    (set (make-local-variable 'comint-last-output-start)
+         (point-marker))))
 (add-hook 'compilation-filter-hook #'compilation-ansi-color-process-output)
 
 ;; Install the colour scheme according to personal taste.
