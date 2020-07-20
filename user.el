@@ -4,6 +4,10 @@
 
 (add-to-list 'load-path (concat dotfiles-dir "bcobb"))
 (add-to-list 'load-path (concat dotfiles-dir "lib"))
+(add-to-list 'load-path (concat dotfiles-dir "local"))
+(add-to-list 'load-path (concat dotfiles-dir "vendor"))
+
+(load "environment" 't)
 
 (require 'bcobb-lib)
 
