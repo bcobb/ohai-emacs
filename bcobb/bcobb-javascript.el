@@ -24,11 +24,7 @@
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (setq flycheck-javascript-eslint-executable (executable-find "eslint"))))
 
-(defun enable-minor-mode (my-pair)
-  "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
-  (if (buffer-file-name)
-      (if (string-match (car my-pair) buffer-file-name)
-          (funcall (cdr my-pair)))))
+(require 'bcobb-lib)
 
 (add-hook 'web-mode-hook #'(lambda ()
                              (enable-minor-mode

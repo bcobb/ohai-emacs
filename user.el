@@ -14,7 +14,7 @@
 (require 'bcobb-chruby)
 (require 'bcobb-copypasta)
 (require 'bcobb-javascript)
-(require 'bcobb-js-flow)
+(require 'bcobb-typescript)
 (require 'bcobb-logbook)
 (require 'bcobb-ohai-tweaks)
 (require 'bcobb-rubocop)

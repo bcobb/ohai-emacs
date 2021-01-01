@@ -80,3 +80,4 @@ Your installed Emacs reports:
 
 ;; Load the user's config, if it exists.
 (load (concat dotfiles-dir "user.el") 'noerror)
+(put 'downcase-region 'disabled nil)
